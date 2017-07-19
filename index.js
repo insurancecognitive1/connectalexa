@@ -30,7 +30,7 @@ app.post('/', function(req, res) {
   var query = solrClient.createQuery();
   var result;
   query.q('how to add a new policy');
-  console.log('log request', req.request.intent.slots.anytext.value);
+ // console.log('log request', req.request.intent.slots.anytext.value);
   
   solrClient.search(query, function(err, searchResponse) {
   if(err) {
