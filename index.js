@@ -58,6 +58,7 @@ app.post('/', function(req, res) {
         //res.send(searchResponse.response.docs[0]);
       console.log('Final content: ' + response.toString());
     */  
+  var response =  'Is there anything else I can assist you with'
       res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
 //  res.send(JSON.stringify({ "speech": response, "displayText": response ,"data": {"skype": {"text":JSON.parse(JSON.stringify(searchResponse.response.docs[0].contentHtml, null, 2))}}}));
       res.send(JSON.stringify({ "version": "1.0", "response":{ "outputSpeech":{ "type": "PlainText","text": response}} }));
