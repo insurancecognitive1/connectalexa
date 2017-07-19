@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-/*const watson = require('watson-developer-cloud'); // watson sdk
+const watson = require('watson-developer-cloud'); // watson sdk
 var retrieve_and_rank = watson.retrieve_and_rank({
   username: 'f52ce40c-c4b3-4bce-bef1-18d45b7cb6c2',
   password: 'XKnBPpXiXu3s',
@@ -12,7 +12,7 @@ var params = {
   cluster_id: 'scd125453e_b4d5_4c3d_aa20_ccf8e6e5560b',
   collection_name: 'PolicyQuery',
   wt: 'json'
-};*/
+};
 
 
 app.set('port', (process.env.PORT || 5000));
@@ -25,12 +25,12 @@ app.use(bodyParser.json());
 
 app.post('/', function(req, res) {
   //response.send("Hello World!")
-  /*var response = 'This is a sample response from your webhook!' //Default response from the webhook to show it's working;
+  var response ;
   solrClient = retrieve_and_rank.createSolrClient(params);
   var query = solrClient.createQuery();
   var result;
-  query.q(req.body.result.parameters['question']);
-  console.log('log request', req.body.result.parameters['question']);
+  query.q('how to add a new policy');
+  console.log('log request', req.request.intent.slots.anytext.value);
   
   solrClient.search(query, function(err, searchResponse) {
   if(err) {
@@ -57,13 +57,13 @@ app.post('/', function(req, res) {
 //      res.send(JSON.stringify(resp));
         //res.send(searchResponse.response.docs[0]);
       console.log('Final content: ' + response.toString());
-    */  
-  var response =  'Is there anything else I can assist you with'
+      
+ // var response =  'Is there anything else I can assist you with'
       res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
 //  res.send(JSON.stringify({ "speech": response, "displayText": response ,"data": {"skype": {"text":JSON.parse(JSON.stringify(searchResponse.response.docs[0].contentHtml, null, 2))}}}));
       res.send(JSON.stringify({ "version": "1.0", "response":{ "outputSpeech":{ "type": "PlainText","text": response}} }));
-    //}
-//});
+    }
+});
     
 });
 
