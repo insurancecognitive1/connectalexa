@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/', function(req, res) {
-  response.send("Hello World!")
+  //response.send("Hello World!")
   /*var response = 'This is a sample response from your webhook!' //Default response from the webhook to show it's working;
   solrClient = retrieve_and_rank.createSolrClient(params);
   var query = solrClient.createQuery();
