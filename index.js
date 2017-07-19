@@ -30,7 +30,7 @@ app.post('/', function(req, res) {
   var query = solrClient.createQuery();
   var result;
   query.q('how to add a new policy');
-  console.log('log request', req.request);
+  console.log('log request', req);
   
   solrClient.search(query, function(err, searchResponse) {
   if(err) {
@@ -39,10 +39,10 @@ app.post('/', function(req, res) {
   }
     else {
       console.log('Found ' + searchResponse.response.numFound + ' documents.');
-     console.log('First document: ' + JSON.stringify(searchResponse.response.docs[0], null, 2));
+     //console.log('First document: ' + JSON.stringify(searchResponse.response.docs[0], null, 2));
       result = JSON.parse(JSON.stringify(searchResponse.response.docs[0].body, null, '\t').toString()).replace(/\\n/g,'\n');
       // result = JSON.parse(searchResponse.response.docs[0].body);//.replace(/\n/g,'\n');
-      console.log('Response content: ' + result);
+      //console.log('Response content: ' + result);
       //response = querystring.escape(result);
       response=result;
       if ( result.includes('endorse'))
