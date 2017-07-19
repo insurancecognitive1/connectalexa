@@ -29,13 +29,14 @@ app.post('/', function(req, res) {
   solrClient = retrieve_and_rank.createSolrClient(params);
   var query = solrClient.createQuery();
   var result;
-  query.q('how to add a new policy');
+  query.q(req.body.request.intent.slots.anytext.value);
   console.log('log request', req.body.request.intent.slots.anytext.value);
   
   solrClient.search(query, function(err, searchResponse) {
   if(err) {
     console.log('Error searching for documents: ' + err);
-    res.send(err);
+  //  res.send(err);
+        res.send(JSON.stringify({ "version": "1.0", "response":{ "outputSpeech":{ "type": "PlainText","text": "Sorry could not retreive what you are asking for. Please try sometime later"}} }));
   }
     else {
       console.log('Found ' + searchResponse.response.numFound + ' documents.');
